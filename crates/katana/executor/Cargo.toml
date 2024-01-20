@@ -17,12 +17,16 @@ starknet.workspace = true
 tracing.workspace = true
 
 # blockifier deps
-blockifier.workspace = true
+blockifier = { workspace = true, optional = true }
 starknet_api.workspace = true
 tokio.workspace = true
 
+# starknet_in_rust deps
 serde_json = { workspace = true, features = [ "arbitrary_precision", "raw_value" ], optional = true }
 starknet_in_rust = { git = "https://github.com/lambdaclass/starknet_in_rust", version = "0.4.0", optional = true }
 
 [features]
+default = [ "blockifier" ]
+
+blockifier = [ "dep:blockifier" ]
 starknet_in_rust = [ "starknet_in_rust/cairo-native" ]
